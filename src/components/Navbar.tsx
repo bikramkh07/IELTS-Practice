@@ -1,8 +1,9 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import ClerkAuthNav from '@/components/ClerkAuthNav';
+import { hasClerk } from '@/lib/clerk-config';
 
 const NAV_ITEMS = [
   { href: '/features', label: 'Features' },
@@ -52,17 +53,18 @@ export default function Navbar() {
           ))}
         </div>
         <div className="nav-cta">
-          <SignedOut>
-            <SignInButton mode="modal">
-              <button className="btn-ghost">Sign In</button>
-            </SignInButton>
-            <Link href="/sign-up" className="btn-primary">
-              Get Started
-            </Link>
-          </SignedOut>
-          <SignedIn>
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
+          {hasClerk ? (
+            <ClerkAuthNav />
+          ) : (
+            <>
+              <Link href="/sign-in" className="btn-ghost">
+                Sign In
+              </Link>
+              <Link href="/sign-up" className="btn-primary">
+                Get Started
+              </Link>
+            </>
+          )}
         </div>
       </nav>
       <div

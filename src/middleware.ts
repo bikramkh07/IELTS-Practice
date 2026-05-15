@@ -1,6 +1,10 @@
 import { clerkMiddleware } from '@clerk/nextjs/server';
+import { NextResponse } from 'next/server';
+import { hasClerk } from '@/lib/clerk-config';
 
-export default clerkMiddleware();
+export default hasClerk
+  ? clerkMiddleware()
+  : () => NextResponse.next();
 
 export const config = {
   matcher: [

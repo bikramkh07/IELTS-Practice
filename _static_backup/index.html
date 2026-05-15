@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="BandUp AI — AI-powered IELTS Band 7+ Academy. Practice speaking, writing, reading and listening with your personal AI examssiner.">
+  <meta name="theme-color" content="#05060a">
+  <link rel="manifest" href="manifest.json">
+  <title>BandUp AI — IELTS Band 7+ Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-logo">BandUp AI</div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMobileMenu()">
+      <i class="ti ti-menu-2"></i>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a onclick="scrollToSection('features');closeMobileMenu()">Features</a>
+      <a onclick="scrollToSection('modules');closeMobileMenu()">Practice</a>
+      <a onclick="scrollToSection('progress');closeMobileMenu()">Progress</a>
+      <a onclick="scrollToSection('testimonials');closeMobileMenu()">Reviews</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn-ghost" onclick="showToast('Sign in coming soon!')">Sign In</button>
+      <button class="btn-primary" onclick="showToast('Starting your free trial! 🚀')">Start Free Trial</button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU OVERLAY -->
+  <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        AI-Powered IELTS Academy — Now Live
+      </div>
+      <h1 class="hero-h1">
+        Achieve <span class="grad">Band 7+</span><br>
+        With Your AI examssiner
+      </h1>
+      <p class="hero-sub">
+        Practice speaking, writing, reading and listening with an AI that thinks like a real IELTS examssiner.
+        Get instant band scores and personalised feedback — available 24/7.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-hero" onclick="scrollToSection('modules')">
+          <i class="ti ti-brain"></i> Start Practicing Free
+        </button>
+        <button class="btn-hero-outline" onclick="scrollToSection('features')">
+          <i class="ti ti-player-play"></i> See How It Works
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-val">50K+</div>
+          <div class="hero-stat-lab">Students enrolled</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-val">91%</div>
+          <div class="hero-stat-lab">Achieve Band 7+</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-val">2.4M+</div>
+          <div class="hero-stat-lab">Practice sessions</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-val">4.9★</div>
+          <div class="hero-stat-lab">Average rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="content-section" id="features">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-h2">Everything You Need for Band 7+</h2>
+    <p class="section-sub">An AI-powered IELTS academy that adapts to your weaknesses and gets you examss-ready in
+      weeks,
+      not months.</p>
+
+    <div class="features-grid">
+      <div class="feat-card" data-delay="0">
+        <div class="feat-icon purple"><i class="ti ti-microphone"></i></div>
+        <h3>AI Speaking examssiner</h3>
+        <p>Have real conversations with our AI examssiner for all three speaking parts. Get scored on fluency,
+          coherence,
+          lexical resource, and grammatical range in real time.</p>
+        <span class="feat-tag">Real-time AI</span>
+      </div>
+      <div class="feat-card" data-delay="1">
+        <div class="feat-icon teal"><i class="ti ti-pencil"></i></div>
+        <h3>Writing Evaluator</h3>
+        <p>Submit Task 1 and Task 2 essays and receive band scores across all four IELTS writing criteria within
+          seconds. Detailed improvement suggestions included.</p>
+        <span class="feat-tag">Instant Feedback</span>
+      </div>
+      <div class="feat-card" data-delay="2">
+        <div class="feat-icon gold"><i class="ti ti-headphones"></i></div>
+        <h3>Listening Practice</h3>
+        <p>Access hundreds of authentic listening passages with adaptive difficulty. AI tracks your error patterns and
+          targets your specific weak areas each session.</p>
+        <span class="feat-tag">Adaptive</span>
+      </div>
+      <div class="feat-card" data-delay="3">
+        <div class="feat-icon coral"><i class="ti ti-book"></i></div>
+        <h3>Reading Modules</h3>
+        <p>Academic and General Training passages with time-tracked sessions. AI explains why each answer is correct and
+          builds your reading strategies over time.</p>
+        <span class="feat-tag">Explained Answers</span>
+      </div>
+      <div class="feat-card" data-delay="4">
+        <div class="feat-icon green"><i class="ti ti-chart-line"></i></div>
+        <h3>Progress Analytics</h3>
+        <p>Track your band score journey with detailed analytics. Get AI-generated study plans based on your current
+          level, target score, and examss date.</p>
+        <span class="feat-tag">Smart Plans</span>
+      </div>
+      <div class="feat-card" data-delay="5">
+        <div class="feat-icon purple"><i class="ti ti-clipboard-check"></i></div>
+        <h3>Full Mock examss</h3>
+        <p>Simulate the real IELTS experience with timed, full-length tests. Receive a complete score breakdown with
+          examssiner-style commentary after every mock.</p>
+        <span class="feat-tag">examss-Ready</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="content-section how-section" id="how">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-h2">From Sign Up to Band 7+ in 3 Steps</h2>
+    <p class="section-sub">A simple, structured path designed specifically for South Asian IELTS candidates.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>Diagnostic Test</h3>
+        <p>Take a 30-minute AI diagnostic across all four skills. Get your baseline band score and a personalised study
+          roadmap immediately.</p>
+      </div>
+      <div class="step-arrow"><i class="ti ti-arrow-right"></i></div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>Daily AI Practice</h3>
+        <p>Follow your AI-curated daily plan. Practice each skill with targeted exercises, instant feedback, and
+          adaptive difficulty.</p>
+      </div>
+      <div class="step-arrow"><i class="ti ti-arrow-right"></i></div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>Mock & Improve</h3>
+        <p>Take full mock examss under real conditions. Review detailed AI feedback and track your progression to Band
+          7+.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRESS / DASHBOARD -->
+  <section class="content-section" id="progress">
+    <div class="section-label">Your Dashboard</div>
+    <h2 class="section-h2">Track Every Point of Progress</h2>
+    <p class="section-sub">Your personal learning command centre. See exactly where you are and what to do next to reach
+      Band 7+.</p>
+
+    <div class="progress-grid">
+      <div class="prog-card">
+        <div class="prog-label">Current Band</div>
+        <div class="prog-val" style="color:var(--accent3)">6.5</div>
+        <div class="prog-note">Target: Band 7.5 · 28 days left</div>
+        <div class="prog-sparkline" id="sparkline1"></div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-label">Study Streak</div>
+        <div class="prog-val" style="color:var(--gold)">14 days</div>
+        <div class="prog-note">Personal best: 21 days</div>
+        <div class="streak-row" id="streakRow"></div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-label">Sessions Done</div>
+        <div class="prog-val" style="color:var(--green)">47</div>
+        <div class="prog-note">This month: 12 sessions</div>
+        <div class="prog-sparkline" id="sparkline2"></div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-label">Vocabulary</div>
+        <div class="prog-val" style="color:var(--teal)">3,240</div>
+        <div class="prog-note">Words mastered · +86 this week</div>
+        <div class="prog-sparkline" id="sparkline3"></div>
+      </div>
+    </div>
+
+    <div class="dashboard-wrap">
+      <div class="dash-header">
+        <div class="dash-title"><i class="ti ti-layout-dashboard" style="color:var(--accent3)"></i> Band Score Overview
+        </div>
+        <div class="dash-tabs">
+          <button class="dash-tab active" onclick="setDashTab(this,'overall')">Overall</button>
+          <button class="dash-tab" onclick="setDashTab(this,'weekly')">Weekly</button>
+          <button class="dash-tab" onclick="setDashTab(this,'monthly')">Monthly</button>
+        </div>
+      </div>
+      <div class="dash-body">
+        <div>
+          <div class="band-score-card">
+            <div class="band-ring">
+              <svg width="130" height="130" viewBox="0 0 130 130" aria-hidden="true">
+                <defs>
+                  <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#6c63ff" />
+                    <stop offset="100%" stop-color="#0dd9c8" />
+                  </linearGradient>
+                </defs>
+                <circle class="ring-bg" cx="65" cy="65" r="54" />
+                <circle class="ring-fill" cx="65" cy="65" r="54" id="ringFill" />
+              </svg>
+              <div class="band-number" id="bandNumber">6.5</div>
+            </div>
+            <div class="band-label">Overall Band Score</div>
+            <div class="band-sub" id="bandSub">+0.5 this month ↑</div>
+          </div>
+          <div class="skills-breakdown">
+            <div class="skill-item">
+              <div class="skill-name"><i class="ti ti-microphone" style="font-size:12px;color:var(--coral)"></i>
+                Speaking</div>
+              <div class="skill-score s-mid">6.5</div>
+              <div class="skill-bar">
+                <div class="skill-bar-fill" style="width:81%;background:linear-gradient(90deg,var(--coral),#ff8e8e)">
+                </div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><i class="ti ti-pencil" style="font-size:12px;color:var(--accent3)"></i> Writing
+              </div>
+              <div class="skill-score s-low">6.0</div>
+              <div class="skill-bar">
+                <div class="skill-bar-fill"
+                  style="width:75%;background:linear-gradient(90deg,var(--accent),var(--accent3))"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><i class="ti ti-headphones" style="font-size:12px;color:var(--teal)"></i>
+                Listening</div>
+              <div class="skill-score s-high">7.0</div>
+              <div class="skill-bar">
+                <div class="skill-bar-fill" style="width:87%;background:linear-gradient(90deg,var(--teal),#5ffff5)">
+                </div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><i class="ti ti-book" style="font-size:12px;color:var(--gold)"></i> Reading</div>
+              <div class="skill-score s-mid">6.5</div>
+              <div class="skill-bar">
+                <div class="skill-bar-fill"
+                  style="width:81%;background:linear-gradient(90deg,var(--gold),var(--gold2))"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-panel">
+          <div class="activity-card">
+            <div class="activity-header">
+              <span class="activity-title">Today's AI Plan</span>
+              <span class="badge-ai">AI Generated</span>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot done"></div>
+              <span class="activity-text">Listening: Airport announcements</span>
+              <span class="activity-score" style="color:var(--green)">7.5</span>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot done"></div>
+              <span class="activity-text">Vocabulary: Academic word list</span>
+              <span class="activity-score" style="color:var(--green)">✓</span>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot prog"></div>
+              <span class="activity-text">Writing Task 2 practice</span>
+              <span class="activity-score" style="color:var(--gold)">In progress</span>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot todo"></div>
+              <span class="activity-text">Speaking Part 2 cue card</span>
+              <span class="activity-score" style="color:var(--text3)">Pending</span>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot todo"></div>
+              <span class="activity-text">Reading: True/False/NG practice</span>
+              <span class="activity-score" style="color:var(--text3)">Pending</span>
+            </div>
+          </div>
+          <div class="activity-card">
+            <div class="activity-header">
+              <span class="activity-title">AI Recommendation</span>
+              <i class="ti ti-brain" style="font-size:16px;color:var(--accent3)"></i>
+            </div>
+            <div class="ai-reco-text">
+              Focus on Writing Task 2 coherence — your ideas are strong but paragraph linking is limiting your band
+              score. Practice discourse markers daily.
+            </div>
+            <button class="ai-reco-btn" onclick="scrollToSection('modules');switchModuleById('writing')">
+              Open Writing Plan →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICE MODULES -->
+  <section class="content-section" id="modules">
+    <div class="section-label">Practice Modules</div>
+    <h2 class="section-h2">Your Daily AI examssiner</h2>
+    <p class="section-sub">Choose a module and start practising. Your AI examssiner is ready to evaluate you in real
+      time, 24 hours a day.</p>
+
+    <div class="module-tabs" role="tablist">
+      <button class="module-tab active" role="tab" onclick="switchModule('writing',this)">
+        <i class="ti ti-pencil"></i> Writing
+      </button>
+      <button class="module-tab" role="tab" onclick="switchModule('speaking',this)">
+        <i class="ti ti-microphone"></i> Speaking
+      </button>
+      <button class="module-tab" role="tab" onclick="switchModule('reading',this)">
+        <i class="ti ti-book"></i> Reading
+      </button>
+      <button class="module-tab" role="tab" onclick="switchModule('listening',this)">
+        <i class="ti ti-headphones"></i> Listening
+      </button>
+    </div>
+
+    <!-- WRITING TAB -->
+    <div class="tab-content active" id="tab-writing" role="tabpanel">
+      <div class="examss-section">
+        <div class="examss-topbar">
+          <div class="examss-type-badge">
+            <div class="type-dot"></div>
+            Writing Task 2 — Academic
+          </div>
+          <div class="examss-controls">
+            <button class="examss-new-btn" onclick="loadNewPrompt()"><i class="ti ti-refresh"></i> New Prompt</button>
+            <div class="examss-timer" id="examssTimer">40:00</div>
+          </div>
+        </div>
+        <div class="examss-body">
+          <div class="writing-prompt">
+            <div class="writing-prompt-label"><i class="ti ti-file-text"></i> Task Prompt</div>
+            <p id="promptText">Some people believe that governments should invest more in public transport, while others
+              argue that private vehicle ownership should be encouraged. Discuss both views and give your own opinion.
+            </p>
+            <p class="prompt-note">Write at least 250 words · Recommended time: 40 minutes</p>
+          </div>
+          <textarea class="writing-area" id="writingArea"
+            placeholder="Begin your essay here...&#10;&#10;The AI examssiner will evaluate your response across four IELTS writing criteria:&#10;• Task Achievement&#10;• Coherence & Cohesion&#10;• Lexical Resource&#10;• Grammatical Range & Accuracy"
+            oninput="updateWordCount()" aria-label="Essay writing area"></textarea>
+          <div class="examss-footer">
+            <div class="word-count">Words: <span id="wordCountDisplay" class="wc-num">0</span> <span class="wc-min">/
+                250 minimum</span></div>
+            <div class="examss-footer-btns">
+              <button class="btn-load-sample" onclick="loadSampleEssay()">
+                <i class="ti ti-file-import"></i> Load Sample
+              </button>
+              <button class="btn-get-feedback" onclick="submitForFeedback()">
+                <i class="ti ti-brain"></i> Get AI Feedback
+              </button>
+            </div>
+          </div>
+
+          <!-- AI FEEDBACK PANEL -->
+          <div class="ai-feedback-panel" id="aiFeedbackPanel" style="display:none">
+            <div class="ai-feedback-header">
+              <div class="ai-avatar"><i class="ti ti-robot"></i></div>
+              <div>
+                <div class="ai-feedback-title">AI examssiner Feedback</div>
+                <div class="ai-feedback-sub">IELTS Band Score Analysis</div>
+              </div>
+              <button class="close-feedback" onclick="document.getElementById('aiFeedbackPanel').style.display='none'">
+                <i class="ti ti-x"></i>
+              </button>
+            </div>
+            <div class="ai-scores-row">
+              <div class="ai-score-chip">
+                <div class="chip-val" style="color:var(--gold)">6.5</div>
+                <div class="chip-lab">Task Achievement</div>
+              </div>
+              <div class="ai-score-chip">
+                <div class="chip-val" style="color:var(--accent3)">7.0</div>
+                <div class="chip-lab">Coherence</div>
+              </div>
+              <div class="ai-score-chip">
+                <div class="chip-val" style="color:var(--teal)">6.5</div>
+                <div class="chip-lab">Lexical Resource</div>
+              </div>
+              <div class="ai-score-chip">
+                <div class="chip-val" style="color:var(--green)">7.0</div>
+                <div class="chip-lab">Grammar</div>
+              </div>
+              <div class="ai-score-chip overall-chip">
+                <div class="chip-val chip-overall">6.5</div>
+                <div class="chip-lab">Overall Band</div>
+              </div>
+            </div>
+            <div class="ai-feedback-text">
+              Your argument is logically structured and your position is clearly maintained throughout the essay. To
+              improve toward Band 7, focus on varying sentence structures more — try using mixed conditionals and
+              relative clauses effectively. Replace high-frequency words like "good" and "important" with more precise
+              academic vocabulary such as "beneficial" and "significant". Your introduction could be stronger with a
+              more nuanced thesis statement that previews both sides before your position.
+            </div>
+            <div class="feedback-improvements">
+              <div class="improvement-tag"><i class="ti ti-arrow-up"></i> Use more discourse markers</div>
+              <div class="improvement-tag"><i class="ti ti-arrow-up"></i> Vary sentence length</div>
+              <div class="improvement-tag"><i class="ti ti-arrow-up"></i> Stronger conclusion</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPEAKING TAB -->
+    <div class="tab-content" id="tab-speaking" role="tabpanel">
+      <div class="speaking-wrap">
+        <div class="speak-card">
+          <h3><i class="ti ti-microphone" style="color:var(--coral)"></i> AI Speaking Session</h3>
+          <p>Press the mic to start your AI speaking session. Speak naturally — the AI examssiner is listening and will
+            score your fluency, coherence, vocabulary and pronunciation.</p>
+          <div class="mic-center">
+            <div class="mic-outer-ring" id="micRing">
+              <button class="mic-button" id="micBtn" onclick="toggleMic()" aria-label="Toggle microphone recording">
+                <i class="ti ti-microphone" id="micIcon"></i>
+              </button>
+            </div>
+            <div class="wave-bar-wrap paused" id="waveWrap" aria-hidden="true">
+              <div class="wave-bars">
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+              </div>
+            </div>
+            <div id="micStatus" class="mic-status">Click the mic to start recording</div>
+          </div>
+          <div class="cue-card">
+            <div class="cue-card-label"><i class="ti ti-cards"></i> Part 2 — Cue Card Topic</div>
+            <div class="cue-card-text">
+              Describe a time when you helped someone.<br><br>
+              You should say:
+              <ul class="cue-list">
+                <li>who you helped and what the situation was</li>
+                <li>what you did to help them</li>
+                <li>why you decided to help</li>
+                <li>how you felt about it afterwards</li>
+              </ul>
+            </div>
+            <div class="cue-card-note">
+              <i class="ti ti-clock"></i> 1 minute preparation · 1–2 minutes speaking
+            </div>
+          </div>
+          <button class="btn-new-topic" onclick="showToast('Loading new cue card topic...')">
+            <i class="ti ti-refresh"></i> New Topic
+          </button>
+        </div>
+        <div class="speak-card">
+          <h3><i class="ti ti-list-check" style="color:var(--accent3)"></i> Speaking examss Parts</h3>
+          <p>Complete all three parts of the IELTS speaking examss with your AI examssiner to receive a full official
+            band
+            score breakdown.</p>
+          <div class="part-list">
+            <div class="part-item done-item" onclick="showToast('Reviewing Part 1 results...')">
+              <div class="part-num done"><i class="ti ti-check" style="font-size:12px"></i></div>
+              <div class="part-text">
+                <div class="part-title">Part 1 — Introduction & Interview</div>
+                <div class="part-desc">Work, study, hometown topics · 4–5 mins</div>
+              </div>
+              <span class="part-score-badge done-score">7.0</span>
+            </div>
+            <div class="part-item active-item" onclick="showToast('Continuing Part 2 — Long Turn...')">
+              <div class="part-num active-num">2</div>
+              <div class="part-text">
+                <div class="part-title">Part 2 — Long Turn</div>
+                <div class="part-desc">Cue card topic · 3–4 mins</div>
+              </div>
+              <span class="part-score-badge active-score">Active →</span>
+            </div>
+            <div class="part-item locked-item">
+              <div class="part-num todo-num"><i class="ti ti-lock" style="font-size:11px"></i></div>
+              <div class="part-text">
+                <div class="part-title">Part 3 — Discussion</div>
+                <div class="part-desc">Abstract questions · 4–5 mins</div>
+              </div>
+              <span class="part-score-badge locked-score">Locked</span>
+            </div>
+          </div>
+          <div class="ai-speaking-tip">
+            <div class="tip-label"><i class="ti ti-bulb"></i> AI Pronunciation Tip</div>
+            <div class="tip-text">Avoid overusing filler phrases like "you know" and "basically". Replace with brief
+              pauses or linking expressions — this significantly improves your fluency score.</div>
+          </div>
+          <div class="speaking-scores-preview">
+            <div class="spk-score-item"><span>Fluency</span>
+              <div class="spk-bar">
+                <div style="width:75%;background:var(--coral)"></div>
+              </div><span>6.5</span>
+            </div>
+            <div class="spk-score-item"><span>Vocabulary</span>
+              <div class="spk-bar">
+                <div style="width:87%;background:var(--accent3)"></div>
+              </div><span>7.0</span>
+            </div>
+            <div class="spk-score-item"><span>Grammar</span>
+              <div class="spk-bar">
+                <div style="width:81%;background:var(--teal)"></div>
+              </div><span>6.5</span>
+            </div>
+            <div class="spk-score-item"><span>Pronunciation</span>
+              <div class="spk-bar">
+                <div style="width:68%;background:var(--gold)"></div>
+              </div><span>6.0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- READING TAB -->
+    <div class="tab-content" id="tab-reading" role="tabpanel">
+      <div class="reading-wrap">
+        <div class="reading-header">
+          <div>
+            <h3 class="reading-title">Academic Reading — Passage 1</h3>
+            <div class="reading-meta">The Psychology of Memory · Questions 1–13</div>
+          </div>
+          <div class="reading-controls">
+            <div class="reading-timer" id="readingTimer">18:42</div>
+            <button class="btn-reading-ctrl" onclick="showToast('Passage options menu...')"><i
+                class="ti ti-dots"></i></button>
+          </div>
+        </div>
+        <div class="reading-layout">
+          <div class="passage-col">
+            <div class="passage-label">Reading Passage</div>
+            <div class="passage-text" id="passageText">
+              <p><strong>The Reconstructive Nature of Memory</strong></p>
+              <p>Memory is not a perfect recording device. Unlike a video camera that passively captures events, human
+                memory is an active process of reconstruction. Every time we recall an event, we do not simply play back
+                a stored file; instead, we rebuild the memory from fragments, influenced by our subsequent experiences,
+                knowledge, and even the questions we are asked.</p>
+              <p>This reconstructive quality was demonstrated powerfully by psychologist Elizabeth Loftus in her
+                landmark studies on eyewitness testimony. In one famous experiment, participants who watched a film of a
+                car accident were asked about the speed of the vehicles. Those asked "How fast were the cars going when
+                they smashed?" gave significantly higher estimates than those asked "How fast were the cars going when
+                they contacted?"</p>
+              <p>The implications of this research are profound. If memory is so easily influenced by the phrasing of a
+                question, then eyewitness testimony — long considered the gold standard of courtroom evidence — must be
+                viewed with considerable scepticism. In fact, memory researchers have consistently found that people can
+                be made to remember events that never happened at all, simply by being exposed to misleading post-event
+                information.</p>
+              <p>Schema theory provides one explanation for this malleability. A schema is a mental framework — a set of
+                expectations and assumptions about how the world works. When we encounter new information, we do not
+                store it in isolation; rather, we interpret it through the lens of our existing schemas. This can lead
+                to systematic distortions: details that don't fit our expectations may be unconsciously altered or
+                forgotten entirely.</p>
+            </div>
+          </div>
+          <div class="questions-col">
+            <div class="questions-label">Questions 1–5: True / False / Not Given</div>
+            <div class="reading-questions">
+              <div class="rq-item" id="rq1">
+                <div class="rq-num">1</div>
+                <div class="rq-body">
+                  <div class="rq-text">Human memory functions like a recording device that stores exact copies of
+                    experiences.</div>
+                  <div class="rq-options">
+                    <button class="rq-btn true-btn" onclick="answerRQ(this,1,'TRUE','FALSE')">TRUE</button>
+                    <button class="rq-btn false-btn" onclick="answerRQ(this,1,'FALSE','FALSE')">FALSE</button>
+                    <button class="rq-btn ng-btn" onclick="answerRQ(this,1,'NG','FALSE')">NOT GIVEN</button>
+                  </div>
+                  <div class="rq-feedback" id="rqf1"></div>
+                </div>
+              </div>
+              <div class="rq-item" id="rq2">
+                <div class="rq-num">2</div>
+                <div class="rq-body">
+                  <div class="rq-text">Elizabeth Loftus conducted research on how the language of questions affects
+                    memory recall.</div>
+                  <div class="rq-options">
+                    <button class="rq-btn true-btn" onclick="answerRQ(this,2,'TRUE','TRUE')">TRUE</button>
+                    <button class="rq-btn false-btn" onclick="answerRQ(this,2,'FALSE','TRUE')">FALSE</button>
+                    <button class="rq-btn ng-btn" onclick="answerRQ(this,2,'NG','TRUE')">NOT GIVEN</button>
+                  </div>
+                  <div class="rq-feedback" id="rqf2"></div>
+                </div>
+              </div>
+              <div class="rq-item" id="rq3">
+                <div class="rq-num">3</div>
+                <div class="rq-body">
+                  <div class="rq-text">Eyewitness testimony is considered completely reliable in modern court cases.
+                  </div>
+                  <div class="rq-options">
+                    <button class="rq-btn true-btn" onclick="answerRQ(this,3,'TRUE','FALSE')">TRUE</button>
+                    <button class="rq-btn false-btn" onclick="answerRQ(this,3,'FALSE','FALSE')">FALSE</button>
+                    <button class="rq-btn ng-btn" onclick="answerRQ(this,3,'NG','FALSE')">NOT GIVEN</button>
+                  </div>
+                  <div class="rq-feedback" id="rqf3"></div>
+                </div>
+              </div>
+              <div class="rq-item" id="rq4">
+                <div class="rq-num">4</div>
+                <div class="rq-body">
+                  <div class="rq-text">A schema is a type of long-term memory storage system in the brain.</div>
+                  <div class="rq-options">
+                    <button class="rq-btn true-btn" onclick="answerRQ(this,4,'TRUE','NG')">TRUE</button>
+                    <button class="rq-btn false-btn" onclick="answerRQ(this,4,'FALSE','NG')">FALSE</button>
+                    <button class="rq-btn ng-btn" onclick="answerRQ(this,4,'NG','NG')">NOT GIVEN</button>
+                  </div>
+                  <div class="rq-feedback" id="rqf4"></div>
+                </div>
+              </div>
+              <div class="rq-item" id="rq5">
+                <div class="rq-num">5</div>
+                <div class="rq-body">
+                  <div class="rq-text">People can be convinced to remember events that never actually occurred.</div>
+                  <div class="rq-options">
+                    <button class="rq-btn true-btn" onclick="answerRQ(this,5,'TRUE','TRUE')">TRUE</button>
+                    <button class="rq-btn false-btn" onclick="answerRQ(this,5,'FALSE','TRUE')">FALSE</button>
+                    <button class="rq-btn ng-btn" onclick="answerRQ(this,5,'NG','TRUE')">NOT GIVEN</button>
+                  </div>
+                  <div class="rq-feedback" id="rqf5"></div>
+                </div>
+              </div>
+            </div>
+            <button class="btn-check-reading" id="checkReadingBtn" onclick="checkReadingAnswers()" style="display:none">
+              <i class="ti ti-check"></i> Check My Answers
+            </button>
+            <div class="reading-score-panel" id="readingScorePanel" style="display:none">
+              <div class="rsp-score"><span id="rspNum">0</span>/5 correct</div>
+              <div class="rsp-band">Estimated band for this section: <strong id="rspBand">-</strong></div>
+              <button class="btn-next-passage" onclick="showToast('Loading next passage...')">Next Passage →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LISTENING TAB -->
+    <div class="tab-content" id="tab-listening" role="tabpanel">
+      <div class="listening-wrap">
+        <div class="listening-header">
+          <div>
+            <h3 class="listening-title">Listening — Section 2</h3>
+            <div class="listening-meta">Community Radio Station Tour · Questions 11–20</div>
+          </div>
+          <span class="listening-badge">Monologue · Intermediate</span>
+        </div>
+
+        <div class="audio-player">
+          <div class="audio-player-inner">
+            <button class="play-btn" id="playBtn" onclick="togglePlay()" aria-label="Play audio">
+              <i class="ti ti-player-play" id="playIcon"></i>
+            </button>
+            <div class="audio-progress-wrap">
+              <div class="audio-waveform" id="audioWaveform"></div>
+              <div class="audio-bar-track">
+                <div class="audio-bar-fill" id="audioProgress"></div>
+              </div>
+              <div class="audio-times">
+                <span id="currentTime">2:14</span>
+                <span>6:30</span>
+              </div>
+            </div>
+            <div class="audio-volume">
+              <i class="ti ti-volume" style="color:var(--text3);font-size:16px"></i>
+              <input type="range" min="0" max="100" value="80" class="volume-slider" aria-label="Volume">
+            </div>
+          </div>
+          <div class="audio-tags">
+            <span class="audio-tag accent">Section 2</span>
+            <span class="audio-tag teal">Monologue</span>
+            <span class="audio-tag gray">6:30 min</span>
+            <span class="audio-tag gray">British Accent</span>
+          </div>
+        </div>
+
+        <div class="listen-instructions">
+          <i class="ti ti-info-circle" style="color:var(--accent3);font-size:15px"></i>
+          Listen carefully and complete the sentences below. Use <strong>NO MORE THAN TWO WORDS AND/OR A NUMBER</strong>
+          for each answer.
+        </div>
+
+        <div class="listening-questions">
+          <div class="lq-group">
+            <div class="lq-group-title">Questions 11–14: Complete the sentences</div>
+            <div class="lq-grid">
+              <div class="lq-item">
+                <label class="lq-label">11. The radio station was founded in <span class="lq-blank-label">the
+                    year</span></label>
+                <input type="text" class="lq-input" id="lq11" placeholder="e.g. 1994" aria-label="Question 11">
+              </div>
+              <div class="lq-item">
+                <label class="lq-label">12. The station covers a radius of <span
+                    class="lq-blank-label">km</span></label>
+                <input type="text" class="lq-input" id="lq12" placeholder="e.g. 50 km" aria-label="Question 12">
+              </div>
+              <div class="lq-item">
+                <label class="lq-label">13. Volunteers work a minimum of <span class="lq-blank-label">hours per
+                    week</span></label>
+                <input type="text" class="lq-input" id="lq13" placeholder="e.g. 4 hours" aria-label="Question 13">
+              </div>
+              <div class="lq-item">
+                <label class="lq-label">14. The training course lasts <span
+                    class="lq-blank-label">duration</span></label>
+                <input type="text" class="lq-input" id="lq14" placeholder="e.g. two days" aria-label="Question 14">
+              </div>
+              <div class="lq-item">
+                <label class="lq-label">15. The station's main studio is located on the <span
+                    class="lq-blank-label">floor</span></label>
+                <input type="text" class="lq-input" id="lq15" placeholder="e.g. third floor" aria-label="Question 15">
+              </div>
+              <div class="lq-item">
+                <label class="lq-label">16. New volunteers must complete a <span class="lq-blank-label">type of
+                    check</span></label>
+                <input type="text" class="lq-input" id="lq16" placeholder="e.g. background check"
+                  aria-label="Question 16">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="listening-footer">
+          <button class="btn-listen-submit" onclick="submitListeningAnswers()">
+            <i class="ti ti-check"></i> Submit All Answers
+          </button>
+          <button class="btn-listen-next" onclick="showToast('Loading Section 3...')">
+            Next Section <i class="ti ti-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="content-section" style="max-width:1200px;padding-top:80px;padding-bottom:80px">
+      <div class="section-label">Success Stories</div>
+      <h2 class="section-h2">Students Who Achieved Band 7+</h2>
+      <p class="section-sub" style="margin-bottom:40px">Real results from real students across South Asia who trusted
+        BandUp AI for their IELTS journey.</p>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"I improved from 5.5 to 7.5 in just 6 weeks. The AI writing feedback was incredible — it
+            caught mistakes I didn't even know I was making. The speaking Examiner felt just like the real test."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2)">RS</div>
+            <div>
+              <div class="testi-name">Riya Sharma <span class="testi-band">Band 7.5</span></div>
+              <div class="testi-info">Kathmandu, Nepal · Canada immigration</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"The daily AI practice sessions kept me consistent. The progress tracking showed me
+            exactly where I was losing points. Got Band 7 for university admission in the UK after 2 months."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c)">AK</div>
+            <div>
+              <div class="testi-name">Arjun Kumar <span class="testi-band">Band 7.0</span></div>
+              <div class="testi-info">Dhaka, Bangladesh · UK university</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"I was stuck at Band 6 for over a year. BandUp AI identified that my writing coherence
+            was the specific problem. The targeted exercises pushed me to Band 7.5 in Writing."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">PS</div>
+            <div>
+              <div class="testi-name">Priya Singh <span class="testi-band">Band 7.5</span></div>
+              <div class="testi-info">Mumbai, India · Australian PR</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"The mock Exams simulator is unbelievably accurate. After three full mocks on BandUp,
+            the actual IELTS felt familiar. The listening section especially — same style, same difficulty."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">MH</div>
+            <div>
+              <div class="testi-name">Mahfuz Hossain <span class="testi-band">Band 7.0</span></div>
+              <div class="testi-info">Sylhet, Bangladesh · Canada study visa</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"What I love most is the instant feedback after each writing task. It doesn't just give
+            you a score — it tells you exactly what to fix, with Examsples. That level of detail changed everything."
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#fa709a,#fee140)">NK</div>
+            <div>
+              <div class="testi-name">Neha Kapoor <span class="testi-band">Band 7.5</span></div>
+              <div class="testi-info">Delhi, India · UK Masters programme</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"As a working professional, I couldn't attend classes. BandUp AI let me practice at 11pm
+            after work. The 24/7 availability and the quality of AI feedback was exactly what I needed."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb)">SP</div>
+            <div>
+              <div class="testi-name">Suraj Paudel <span class="testi-band">Band 7.0</span></div>
+              <div class="testi-info">Pokhara, Nepal · New Zealand work visa</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="content-section" id="faq">
+    <div class="section-label">Common Questions</div>
+    <h2 class="section-h2">Frequently Asked Questions</h2>
+    <p class="section-sub">Everything you need to know about BandUp AI.</p>
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">How accurate is the AI band scoring? <i class="ti ti-chevron-down faq-icon"></i></div>
+        <div class="faq-answer">Our AI evaluator is trained on thousands of real IELTS essays and speaking samples,
+          calibrated to official Cambridge band descriptors. In blind testing, our AI scores align with human Examiners
+          within ±0.5 bands over 94% of the time — comparable to inter-rater reliability between human Examiners
+          themselves.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">Can I use BandUp AI on my phone? <i class="ti ti-chevron-down faq-icon"></i></div>
+        <div class="faq-answer">Yes. BandUp AI is fully responsive and works on all devices. It also supports PWA
+          installation — you can add it to your home screen on both Android and iOS for an app-like experience with
+          offline access to vocabulary and study materials.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">Is BandUp AI suitable for General Training IELTS? <i
+            class="ti ti-chevron-down faq-icon"></i></div>
+        <div class="faq-answer">Absolutely. BandUp AI covers both Academic and General Training formats for Reading and
+          Writing. All modules let you select your test type, and the AI evaluator applies the correct band descriptors
+          for your specific test version.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">How is BandUp AI different from other IELTS apps? <i
+            class="ti ti-chevron-down faq-icon"></i></div>
+        <div class="faq-answer">Most IELTS apps give you practice materials and tell you if an answer is right or wrong.
+          BandUp AI gives you a real AI Examiner experience — open-ended writing evaluation, conversational speaking
+          assessment, adaptive difficulty, and a personalised improvement plan that updates every week based on your
+          performance data.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">How long does it take to reach Band 7? <i class="ti ti-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">This varies by starting level. Students starting at Band 5–5.5 typically reach Band 7 in
+          8–12 weeks with consistent daily practice of 45–60 minutes. Students starting at Band 6 often reach Band 7 in
+          4–6 weeks. Our AI diagnostic gives you a personalised timeline on day one.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section" id="cta">
+    <div class="cta-inner">
+      <div class="cta-badge"><span class="dot"></span> Free to Start — No Credit Card</div>
+      <h2 class="cta-h2">Your Band 7+ Journey<br>Starts Right Now</h2>
+      <p class="cta-sub">Practice IELTS - Speaking, Reading, Listening, Writing with AI tutor. Create your free account
+        in
+        30 seconds.</p>
+      <div class="cta-actions">
+        <button class="btn-hero" onclick="showToast('Welcome to BandUp AI! Setting up your profile... 🎯')">
+          <i class="ti ti-rocket"></i> Start Free Today
+        </button>
+        <button class="btn-hero-outline" onclick="scrollToSection('modules')">
+          <i class="ti ti-eye"></i> Try Demo First
+        </button>
+      </div>
+      <div class="cta-trust">
+        <span><i class="ti ti-shield-check" style="color:var(--green)"></i> No credit card required</span>
+        <span><i class="ti ti-clock" style="color:var(--teal)"></i> Ready in 30 seconds</span>
+        <span><i class="ti ti-star" style="color:var(--gold)"></i> 4.9 star rating</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">BandUp AI</div>
+        <p class="footer-tagline">AI-powered IELTS preparation for the next generation of global citizens. Designed for
+          South Asian students targeting Band 7+.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Twitter" onclick="showToast('Follow us on Twitter!')"><i
+              class="ti ti-brand-twitter"></i></a>
+          <a href="#" aria-label="Instagram" onclick="showToast('Follow us on Instagram!')"><i
+              class="ti ti-brand-instagram"></i></a>
+          <a href="#" aria-label="YouTube" onclick="showToast('Subscribe on YouTube!')"><i
+              class="ti ti-brand-youtube"></i></a>
+          <a href="#" aria-label="Facebook" onclick="showToast('Join us on Facebook!')"><i
+              class="ti ti-brand-facebook"></i></a>
+        </div>
+      </div>
+      <div class="footer-links-grid">
+        <div class="footer-col">
+          <div class="footer-col-title">Practice</div>
+          <a href="#" onclick="switchModuleById('writing')">Writing</a>
+          <a href="#" onclick="switchModuleById('speaking')">Speaking</a>
+          <a href="#" onclick="switchModuleById('reading')">Reading</a>
+          <a href="#" onclick="switchModuleById('listening')">Listening</a>
+          <a href="#" onclick="showToast('Mock Exams coming...')">Mock Exams</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Resources</div>
+          <a href="#" onclick="showToast('Opening vocabulary builder...')">Vocabulary Builder</a>
+          <a href="#" onclick="showToast('Opening grammar guide...')">Grammar Guide</a>
+          <a href="#" onclick="showToast('Opening band descriptors...')">Band Descriptors</a>
+          <a href="#" onclick="showToast('Opening study plans...')">Study Plans</a>
+          <a href="#" onclick="showToast('Opening blog...')">IELTS Blog</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Support</div>
+          <a href="#" onclick="showToast('Opening FAQ...')">FAQ</a>
+          <a href="#" onclick="showToast('Opening help centre...')">Help Centre</a>
+          <a href="#" onclick="showToast('Opening contact form...')">Contact Us</a>
+          <a href="#" onclick="showToast('Opening community forum...')">Community</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-text">© 2025 BandUp AI · All rights reserved</div>
+      <div class="footer-bottom-links">
+        <a href="#" onclick="showToast('Privacy Policy...')">Privacy Policy</a>
+        <a href="#" onclick="showToast('Terms of Service...')">Terms of Service</a>
+        <a href="#" onclick="showToast('Cookie Settings...')">Cookies</a>
+      </div>
+      <div class="footer-tech">Built with Next.js 15 · TypeScript · OpenAI · Tailwind · Vercel</div>
+    </div>
+  </footer>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

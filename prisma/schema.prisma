@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  clerkId   String   @unique
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  sessions  PracticeSession[]
+  scores    Score[]
+}
+
+model PracticeSession {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  module    String
+  content   String?
+  feedback  String?
+  duration  Int?
+  createdAt DateTime @default(now())
+}
+
+model Score {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  module        String
+  overall       Float
+  ta            Float?
+  cc            Float?
+  lr            Float?
+  gra           Float?
+  fluency       Float?
+  vocabulary    Float?
+  grammar       Float?
+  pronunciation Float?
+  createdAt     DateTime @default(now())
+}

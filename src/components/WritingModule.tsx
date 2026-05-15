@@ -1,6 +1,9 @@
 'use client';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useToast } from './Toast';
+import MockFeedbackBanner from './MockFeedbackBanner';
+import { fetchWritingFeedback } from '@/lib/fetch-feedback';
+import type { WritingFeedback } from '@/lib/api-response';
 
 const WRITING_PROMPTS = [
   'Some people believe that governments should invest more in public transport, while others argue that private vehicle ownership should be encouraged. Discuss both views and give your own opinion.',
@@ -21,33 +24,57 @@ In my opinion, governments should prioritise investment in robust public transpo
 
 In conclusion, neither approach should be adopted exclusively. A pragmatic combination of improved public infrastructure and thoughtful regulation of private vehicles offers the most viable path toward sustainable and equitable urban mobility.`;
 
-interface AIFeedback {
-  ta: number; cc: number; lr: number; gra: number; overall: number;
-  feedback: string; improvements: string[];
-}
-
 export default function WritingModule() {
   const { showToast } = useToast();
   const [prompt, setPrompt] = useState(WRITING_PROMPTS[0]);
   const [essay, setEssay] = useState('');
   const [wordCount, setWordCount] = useState(0);
   const [seconds, setSeconds] = useState(2400);
-  const [feedback, setFeedback] = useState<AIFeedback | null>(null);
+  const [feedback, setFeedback] = useState<WritingFeedback | null>(null);
   const [loading, setLoading] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
+  const autoSubmittedRef = useRef(false);
 
   const [hasStarted, setHasStarted] = useState(false);
+
+  const submitFeedback = useCallback(async () => {
+    const words = essay.trim() ? essay.trim().split(/\s+/).length : 0;
+    if (words < 50) {
+      showToast('Please write at least 50 words before requesting feedback.');
+      return;
+    }
+    if (loading) return;
+
+    setLoading(true);
+    showToast('🤖 AI examiner is analysing your essay...');
+
+    try {
+      const data = await fetchWritingFeedback(essay, prompt);
+      setFeedback(data);
+      const label = data.mock ? ' (sample)' : '';
+      showToast(`Feedback ready! Overall Band: ${data.overall}${label} 📊`);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Could not get feedback';
+      showToast(message);
+    } finally {
+      setLoading(false);
+    }
+  }, [essay, prompt, loading, showToast]);
 
   useEffect(() => {
     if (!hasStarted) return;
     timerRef.current = setInterval(() => {
-      setSeconds((s) => {
-        if (s <= 0) { clearInterval(timerRef.current); showToast('⏰ Time is up! Submitting your essay...'); return 0; }
-        return s - 1;
-      });
+      setSeconds((s) => (s <= 0 ? 0 : s - 1));
     }, 1000);
     return () => clearInterval(timerRef.current);
-  }, [hasStarted, showToast]);
+  }, [hasStarted]);
+
+  useEffect(() => {
+    if (!hasStarted || seconds > 0 || autoSubmittedRef.current) return;
+    autoSubmittedRef.current = true;
+    showToast('⏰ Time is up! Submitting your essay...');
+    void submitFeedback();
+  }, [seconds, hasStarted, showToast, submitFeedback]);
 
   const timeStr = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
 
@@ -62,6 +89,7 @@ export default function WritingModule() {
     setPrompt(others[Math.floor(Math.random() * others.length)]);
     setSeconds(2400);
     setFeedback(null);
+    autoSubmittedRef.current = false;
     showToast('New prompt loaded! Timer reset. ✍️');
   };
 
@@ -69,29 +97,6 @@ export default function WritingModule() {
     setEssay(SAMPLE_ESSAY);
     setWordCount(SAMPLE_ESSAY.trim().split(/\s+/).length);
     showToast('Sample essay loaded — 278 words ✅');
-  };
-
-  const submitFeedback = async () => {
-    const words = essay.trim() ? essay.trim().split(/\s+/).length : 0;
-    if (words < 50) { showToast('Please write at least 50 words before requesting feedback.'); return; }
-    setLoading(true);
-    showToast('🤖 AI examiner is analysing your essay...');
-
-    try {
-      const res = await fetch('/api/writing', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ essay, prompt }),
-      });
-      const data = await res.json();
-      setFeedback(data);
-      showToast(`Feedback ready! Overall Band: ${data.overall} 📊`);
-    } catch {
-      setFeedback({ ta: 6.5, cc: 7.0, lr: 6.5, gra: 7.0, overall: 6.5, feedback: 'Your argument is logically structured and your position is clearly maintained throughout the essay. To improve toward Band 7, focus on varying sentence structures more — try using mixed conditionals and relative clauses effectively. Replace high-frequency words like "good" and "important" with more precise academic vocabulary such as "beneficial" and "significant". Your introduction could be stronger with a more nuanced thesis statement that previews both sides before your position.', improvements: ['Use more discourse markers', 'Vary sentence length', 'Stronger conclusion'] });
-      showToast('Feedback ready! Overall Band: 6.5 📊');
-    } finally {
-      setLoading(false);
-    }
   };
 
   const wcColor = wordCount >= 250 ? 'var(--green)' : wordCount > 150 ? 'var(--gold)' : 'var(--text2)';
@@ -102,7 +107,7 @@ export default function WritingModule() {
         <div className="exam-topbar">
           <div className="exam-type-badge"><div className="type-dot" /> Writing Task 2 — Academic</div>
           <div className="exam-controls">
-            <button className="exam-new-btn" onClick={loadNewPrompt}><i className="ti ti-refresh" /> New Prompt</button>
+            <button type="button" className="exam-new-btn" onClick={loadNewPrompt}><i className="ti ti-refresh" /> New Prompt</button>
             <div className="exam-timer" style={{ color: seconds < 300 ? 'var(--coral)' : 'var(--gold)' }}>{timeStr}</div>
           </div>
         </div>
@@ -122,8 +127,8 @@ export default function WritingModule() {
           <div className="exam-footer">
             <div className="word-count">Words: <span className="wc-num" style={{ color: wcColor }}>{wordCount}</span> <span className="wc-min">/ 250 minimum</span></div>
             <div className="exam-footer-btns">
-              <button className="btn-load-sample" onClick={loadSample}><i className="ti ti-file-import" /> Load Sample</button>
-              <button className="btn-get-feedback" onClick={submitFeedback} disabled={loading}>
+              <button type="button" className="btn-load-sample" onClick={loadSample}><i className="ti ti-file-import" /> Load Sample</button>
+              <button type="button" className="btn-get-feedback" onClick={() => void submitFeedback()} disabled={loading}>
                 <i className="ti ti-brain" /> {loading ? 'Analysing...' : 'Get AI Feedback'}
               </button>
             </div>
@@ -133,8 +138,9 @@ export default function WritingModule() {
               <div className="ai-feedback-header">
                 <div className="ai-avatar"><i className="ti ti-robot" /></div>
                 <div><div className="ai-feedback-title">AI examiner Feedback</div><div className="ai-feedback-sub">IELTS Band Score Analysis</div></div>
-                <button className="close-feedback" onClick={() => setFeedback(null)}><i className="ti ti-x" /></button>
+                <button type="button" className="close-feedback" onClick={() => setFeedback(null)}><i className="ti ti-x" /></button>
               </div>
+              {feedback.mock && <MockFeedbackBanner />}
               <div className="ai-scores-row">
                 <div className="ai-score-chip"><div className="chip-val" style={{ color: 'var(--gold)' }}>{feedback.ta}</div><div className="chip-lab">Task Achievement</div></div>
                 <div className="ai-score-chip"><div className="chip-val" style={{ color: 'var(--accent3)' }}>{feedback.cc}</div><div className="chip-lab">Coherence</div></div>

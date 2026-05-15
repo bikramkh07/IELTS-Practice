@@ -29,7 +29,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const html = (
+  return (
     <html lang="en" className={`${syne.variable} ${dmSans.variable} ${outfit.variable}`}>
       <head>
         <link
@@ -38,15 +38,15 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body>{children}</body>
+      <body>
+        {hasClerk ? (
+          <ClerkProvider publishableKey={clerkPublishableKey} appearance={clerkAppearance}>
+            {children}
+          </ClerkProvider>
+        ) : (
+          children
+        )}
+      </body>
     </html>
-  );
-
-  if (!hasClerk) return html;
-
-  return (
-    <ClerkProvider publishableKey={clerkPublishableKey} appearance={clerkAppearance}>
-      {html}
-    </ClerkProvider>
   );
 }

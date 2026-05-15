@@ -39,18 +39,10 @@ export default function PracticePage() {
           ))}
         </div>
 
-        <div style={{ display: activeModule === 'writing' ? 'block' : 'none' }}>
-          <WritingModule />
-        </div>
-        <div style={{ display: activeModule === 'speaking' ? 'block' : 'none' }}>
-          <SpeakingModule />
-        </div>
-        <div style={{ display: activeModule === 'reading' ? 'block' : 'none' }}>
-          <ReadingModule />
-        </div>
-        <div style={{ display: activeModule === 'listening' ? 'block' : 'none' }}>
-          <ListeningModule />
-        </div>
+        {activeModule === 'writing' && <WritingModule />}
+        {activeModule === 'speaking' && <SpeakingModule />}
+        {activeModule === 'reading' && <ReadingModule />}
+        {activeModule === 'listening' && <ListeningModule />}
       </section>
     </AppShell>
   );

@@ -42,7 +42,7 @@ export default function SignInPage() {
         background: '#05060a',
       }}
     >
-      <SignIn afterSignInUrl="/" />
+      <SignIn fallbackRedirectUrl="/" />
     </div>
   );
 }

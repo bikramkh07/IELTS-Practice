@@ -42,7 +42,7 @@ export default function SignUpPage() {
         background: '#05060a',
       }}
     >
-      <SignUp afterSignUpUrl="/" />
+      <SignUp fallbackRedirectUrl="/" />
     </div>
   );
 }
